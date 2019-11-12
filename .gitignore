@@ -1,0 +1,6 @@
+
+#Ignore IntelliJ files
+/.idea
+
+#Ignore compiled class files
+/out
