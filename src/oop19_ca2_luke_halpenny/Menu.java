@@ -51,6 +51,7 @@ public class Menu {
                     }
                     case '1': {
                         System.out.println("[WIP] Option 1.");
+                        Util.generateId();
                         break;
                     }
                     case '2': {
