@@ -1,5 +1,7 @@
 package oop19_ca2_luke_halpenny;
 
+import sun.java2d.loops.ProcessPath;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
@@ -17,7 +19,8 @@ import java.util.Scanner;
  */
 public class Util {
 
-    public static int cumulativeIdPart = 0;
+    public static final int programId = 0b10101;
+    public static int cumulativeId = 0;
     public static LocalDateTime startTime = LocalDateTime.of(2019, 1, 1, 0, 0);
 
     /**
@@ -45,15 +48,19 @@ public class Util {
     }
 
     /**
-     * Generates non-sequential unique ID's using the current time. Based on Twitter's Snowflake ID system.
+     * Generates non-sequential unique ID's using the current time. Based on Twitter and Discord's Snowflake ID system.
      * @return a non-sequential unique ID.
      */
-    public static int generateId() {
+    public static long generateId() {
         long timeNowMilis = LocalDateTime.now().toLocalTime().toNanoOfDay() / 1000000;
         long timeStartMilis = startTime.toLocalTime().toNanoOfDay() / 1000000;
         long timeSinceStartMilis = timeNowMilis - timeStartMilis;
-        System.out.println(timeSinceStartMilis);
-        return 0;
+        long timePart = (timeSinceStartMilis & 0x3FFFFFFFFFFL) << 22; // 42 bits, shifted to fill high end of number.
+        long processPart = programId << 17;
+        long cumulativeIdPart = (cumulativeId % 0x1FFFF);
+        long id = timePart + processPart + cumulativeIdPart;
+        System.out.println(id);
+        return id;
     }
 
 }

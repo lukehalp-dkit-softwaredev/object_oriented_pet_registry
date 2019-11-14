@@ -27,6 +27,9 @@ public class Bird extends Pet {
     }
 
     public void setWingspan(double wingspan) {
+        if(wingspan < 0) {
+            throw new IllegalArgumentException("Wingspan must be positive.");
+        }
         this.wingspan = wingspan;
     }
 
