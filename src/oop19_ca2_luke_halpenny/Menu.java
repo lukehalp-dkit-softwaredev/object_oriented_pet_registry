@@ -18,17 +18,21 @@ public class Menu {
     public static final String ERR_FILE_NOT_FOUND = "\t[!] File not found!";
 
     Scanner input;
+    Registry registry;
     boolean running;
 
     public Menu() {
         this.input = new Scanner(System.in);
+        this.registry = new Registry();
     }
 
     void printMenu() {
         System.out.println("-------- CA2 --------");
         System.out.println("Dundalk Pet Registry:");
         System.out.println("---------------------");
+        System.out.println("1. Add pet");
         System.out.println("[WIP] Options Here.");
+        System.out.println("q: Quit");
     }
 
     void quit() {

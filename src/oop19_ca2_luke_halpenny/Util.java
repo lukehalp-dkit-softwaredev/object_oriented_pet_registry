@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class Util {
 
-    public static final int programId = 0b10101;
+    public static final int PROGRAM_ID = 0b10101;
     public static int cumulativeId = 0;
     public static LocalDateTime startTime = LocalDateTime.of(2019, 1, 1, 0, 0);
 
@@ -56,7 +56,7 @@ public class Util {
         long timeStartMilis = startTime.toLocalTime().toNanoOfDay() / 1000000;
         long timeSinceStartMilis = timeNowMilis - timeStartMilis;
         long timePart = (timeSinceStartMilis & 0x3FFFFFFFFFFL) << 22; // 42 bits, shifted to fill high end of number.
-        long processPart = programId << 17;
+        long processPart = PROGRAM_ID << 17;
         long cumulativeIdPart = (cumulativeId % 0x1FFFF);
         long id = timePart + processPart + cumulativeIdPart;
         System.out.println(id);

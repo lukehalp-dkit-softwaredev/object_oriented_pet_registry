@@ -1,6 +1,7 @@
 package oop19_ca2_luke_halpenny;
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 /**
  * Pet class.
@@ -24,6 +25,14 @@ public class Pet {
     private long id;
     private long ownerId;
 
+    public static long getIncrementalId() {
+        return incrementalId;
+    }
+
+    public static void setIncrementalId(long incrementalId) {
+        Pet.incrementalId = incrementalId;
+    }
+
     public Pet(long id, String name, String type, String breed, int age, String colour, Gender gender, long ownerId,
                LocalDateTime dateRegistered) {
         this.setId(id);
@@ -37,16 +46,27 @@ public class Pet {
         this.setDateRegistered(dateRegistered);
     }
 
-//    public static Pet fromFile() {
-//
-//    }
-
     public static Pet newPet(Owner owner, String name, String type, String breed, int age, String colour,
                              Gender gender) {
         long id = incrementalId;
         ++incrementalId;
         LocalDateTime dateRegistered = LocalDateTime.now();
         return new Pet(id, name, type, breed, age, colour, gender, owner.getId(), dateRegistered);
+    }
+
+    public static Pet fromString(String data) {
+        Scanner input = new Scanner(data);
+
+        long id = input.nextLong();
+        String name = input.next();
+        String type = input.next();
+        String breed = input.next();
+        int age = input.nextInt();
+        String colour = input.next();
+        Gender gender = Gender.valueOf(input.next());
+        long ownerId = input.nextLong();
+        LocalDateTime dateRegistered = LocalDateTime.parse(input.next());
+        return new Pet(id, name, type, breed, age, colour, gender, ownerId, dateRegistered);
     }
 
     public String getType() {
