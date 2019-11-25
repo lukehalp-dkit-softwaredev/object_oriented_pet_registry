@@ -121,6 +121,9 @@ public class Owner {
     }
 
     public void addPet(Pet pet) {
+        if(this.getPets().contains(pet)) {
+            throw new IllegalArgumentException("Pet already exists!");
+        }
         this.pets.add(pet);
     }
 

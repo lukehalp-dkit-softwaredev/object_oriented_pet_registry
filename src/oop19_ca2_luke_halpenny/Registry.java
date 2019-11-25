@@ -21,6 +21,9 @@ public class Registry {
     }
 
     public void addOwner(Owner owner) {
+        if(this.listOwners().contains(owner)) {
+            throw new IllegalArgumentException("Owner already exists!");
+        }
         this.owners.add(owner);
     }
 
@@ -86,25 +89,25 @@ public class Registry {
 
     public void displayPets() {
         System.out.println("Pets:");
-        System.out.printf("%30s | %-20s | %-15s | %-15s | %3s | %-15s | %-6s | %16s | %30s |\n",
+        System.out.printf("%30s | %-20s | %-15s | %-15s | %3s | %-15s | %-6s | %-23s | %30s |\n",
                 "ID", "Name", "Type", "Breed", "Age", "Colour", "Gender", "Date Registered", "Owner ID");
         for (int i = 0; i < this.listPets().size(); i++) {
             Pet pet = this.listPets().get(i);
             if(pet instanceof Bird) {
                 Bird bird = (Bird) pet;
-                System.out.printf("%30d | %-20s | %-15s | %-15s | %3d | %-15s | %-6s | %16s | %30d | Wingspan: %8f | Can Fly: %s\n",
+                System.out.printf("%30d | %-20s | %-15s | %-15s | %3d | %-15s | %-6s | %-23s | %30d | Wingspan: %8f | Can Fly: %s\n",
                         bird.getId(), bird.getName(), bird.getType(), bird.getBreed(), bird.getAge(),
                         bird.getColour(), bird.getGender().toString(), bird.getDateRegistered().toString(),
                         bird.getOwnerId(), bird.getWingspan(), bird.isCanFly());
             } else if(pet instanceof  Mammal) {
                 Mammal mammal = (Mammal) pet;
-                System.out.printf("%30d | %-20s | %-15s | %-15s | %3d | %-15s | %-6s | %16s | %30d | Neutered: %s\n",
+                System.out.printf("%30d | %-20s | %-15s | %-15s | %3d | %-15s | %-6s | %-23s | %30d | Neutered: %s\n",
                         mammal.getId(), mammal.getName(), mammal.getType(), mammal.getBreed(), mammal.getAge(),
                         mammal.getColour(), mammal.getGender().toString(), mammal.getDateRegistered().toString(),
                         mammal.getOwnerId(), mammal.isNeutered());
             } else if (pet instanceof Fish) {
                 Fish fish = (Fish) pet;
-                System.out.printf("%30d | %-20s | %-15s | %-15s | %3d | %-15s | %-6s | %16s | %30d | Water Type: %s\n",
+                System.out.printf("%30d | %-20s | %-15s | %-15s | %3d | %-15s | %-6s | %-23s | %30d | Water Type: %s\n",
                         fish.getId(), fish.getName(), fish.getType(), fish.getBreed(), fish.getAge(),
                         fish.getColour(), fish.getGender().toString(), fish.getDateRegistered().toString(),
                         fish.getOwnerId(), fish.getWaterType().toString());
