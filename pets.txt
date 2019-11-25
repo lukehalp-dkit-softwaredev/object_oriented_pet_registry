@@ -1,0 +1,3 @@
+Bird 100 Chika Bird Parrot 3 Red FEMALE 1 2018-05-10T00:00:00 3.5 True
+Mammal 101 Doge Dog Labrador 5 Golden MALE 1 2018-06-05T00:00:00 True
+Fish 102 Nemo Fish Goldfish 1 Orange MALE 1 2019-02-22T00:00:00 SEAWATER

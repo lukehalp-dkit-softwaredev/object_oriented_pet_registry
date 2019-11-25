@@ -61,7 +61,7 @@ public class Owner {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -69,14 +69,14 @@ public class Owner {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
         String regex = "^[A-Za-z0-9!#$%&'*+/=?^_`{|}~\\-][A-Za-z0-9!#$%&'*+/=?^_`{|}~.\\-]{1,62}" +
                 "[A-Za-z0-9!#$%&'*+/=?^_`{|}~\\-]" +
                 "@" +
-                "[A-Za-z0-9][A-Za-z0-9.-]{1,253}[A-Za-z0-9]$";
+                "[A-Za-z0-9][A-Za-z0-9.\\-]{1,253}[A-Za-z0-9]$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if(!matcher.matches()) {
@@ -91,7 +91,7 @@ public class Owner {
     }
 
     public String getTelephone() {
-        return telephone;
+        return this.telephone;
     }
 
     public void setTelephone(String telephone) {
@@ -109,7 +109,7 @@ public class Owner {
     }
 
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
     public void setAddress(String address) {
@@ -132,4 +132,24 @@ public class Owner {
         }
         return null;
     }
+
+    public boolean equals(Owner o) {
+        return this.getId() == o.getId() && this.getName() == this.getName() && this.getEmail() == o.getEmail()
+                && this.getTelephone() == o.getTelephone() && this.getAddress() == o.getAddress()
+                && this.getPets().equals(o.getPets());
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (this.getId() * 3 + this.getName().hashCode() * 5 + this.getEmail().hashCode() * 7
+                + this.getTelephone().hashCode() * 11 + this.getAddress().hashCode() * 13
+                + this.getPets().hashCode() * 17);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Owner(id=%d,name=%s,email=%s,telephone=%s,address=%s,#pets=%d)", this.getId(),
+                this.getName(), this.getEmail(), this.getTelephone(), this.getAddress(), this.getPets().size());
+    }
+
 }

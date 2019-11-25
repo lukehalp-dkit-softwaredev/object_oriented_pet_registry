@@ -1,6 +1,7 @@
 package oop19_ca2_luke_halpenny;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
  * @author Luke Halpenny (D00219060)
  * @version 1.0
  */
-public class Pet {
+public class Pet implements Comparable<Pet> {
 
     private static long incrementalId = 1;
 
@@ -143,4 +144,35 @@ public class Pet {
     public void setOwnerId(long ownerId) {
         this.ownerId = ownerId;
     }
+
+    @Override
+    public int compareTo(Pet o) {
+        return (int) (this.getId() - o.getId());
+    }
+
+    public Comparator<Pet> sortByAge() {
+        return new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                return o1.getAge() - o2.getAge();
+            }
+        };
+    }
+
+    public Comparator<Pet> sortByGender() {
+        return new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                if(o1.getGender() == o2.getGender()) {
+                    return 0;
+                } else if(o1.getGender() == Gender.MALE && o2.getGender() == Gender.FEMALE) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        };
+    }
+
+
 }
