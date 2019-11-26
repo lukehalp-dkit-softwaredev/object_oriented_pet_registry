@@ -1,6 +1,6 @@
 package oop19_ca2_luke_halpenny;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -64,15 +64,22 @@ public class Menu {
             if(cmdLine.length() == 1) {
                 char cmd = cmdLine.toUpperCase().charAt(0);
                 switch(cmd) {
-                    case 'q': {
+                    case 'Q': {
                         this.quit();
                         break;
                     }
                     case '1': {
                         // Add pet
-                        System.out.println("[WIP] Option 1.");
                         System.out.print("Owner ID >> ");
-                        long owner_id = input.nextLong();
+                        long owner_id;
+                        if(input.hasNextLong()) {
+                            owner_id = input.nextLong();
+                        } else {
+                            System.err.println("\t[!] Invalid Owner ID!");
+                            System.out.println();
+                            input.nextLine();
+                            break;
+                        }
                         input.nextLine();
                         Owner owner = this.registry.findOwnerById(owner_id);
                         if(owner == null) {
@@ -197,7 +204,20 @@ public class Menu {
                     }
                     case '5': {
                         // Add owner
-                        System.out.println("[WIP] Option 5.");
+                        System.out.print("Name >> ");
+                        String name = input.nextLine();
+                        System.out.print("Email >> ");
+                        String email = input.nextLine();
+                        System.out.print("Phone Number >> ");
+                        String telephone = input.nextLine();
+                        System.out.print("Address >> ");
+                        String address = input.nextLine();
+                        try {
+                            Owner owner = Owner.newOwner(name, email, telephone, address);
+                            this.registry.addOwner(owner);
+                        } catch (IllegalArgumentException e) {
+                            System.err.println("\t[!] Invalid argument: " + e.getMessage());
+                        }
                         break;
                     }
                     case '6': {
@@ -255,13 +275,37 @@ public class Menu {
                         break;
                     }
                     case 'F': {
-                        // Load from bin
-                        System.out.println('E');
+                        // Save to bin
+                        try {
+                            ObjectOutputStream out = new ObjectOutputStream(
+                                    new FileOutputStream("registry.dat"));
+                            out.writeObject(this.registry);
+                            System.out.println("Saved!");
+                        } catch (FileNotFoundException e) {
+                            System.err.println("\t[!] File not found!");
+                        } catch (IOException e) {
+                            System.err.println("\t[!] Couldn't write file!");
+                        }
                         break;
                     }
                     case 'G': {
-                        // Save to bin
-                        System.out.println('F');
+                        // Load from bin
+                        try {
+                            File f = new File("registry.dat");
+                            if (f.exists()) {
+                                ObjectInputStream in = new ObjectInputStream(
+                                        new FileInputStream(f));
+                                this.registry = (Registry) in.readObject();
+                                in.close();
+                            }
+                            System.out.println("Loaded!");
+                        } catch (FileNotFoundException e) {
+                            System.err.println("\t[!] File not found!");
+                        } catch (IOException e) {
+                            System.err.println("\t[!] Couldn't read file!");
+                        } catch (ClassNotFoundException e) {
+                            System.err.println("\t[!] Data file not valid!");
+                        }
                         break;
                     }
                     default: {

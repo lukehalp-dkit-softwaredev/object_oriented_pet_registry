@@ -66,4 +66,19 @@ public class Bird extends Pet {
     public void setCanFly(boolean canFly) {
         this.canFly = canFly;
     }
+
+    public boolean equals(Bird o) {
+        return super.equals(o) && this.getWingspan() == o.getWingspan() && this.isCanFly() == o.isCanFly();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + 29 * (int) (this.getWingspan() * 10000) + 31 * (this.isCanFly() ? 1 : 0);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("(wingspan=%.2f,canFly=%s)",
+                this.getWingspan(), this.isCanFly());
+    }
 }

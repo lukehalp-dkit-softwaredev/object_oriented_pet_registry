@@ -1,6 +1,7 @@
 package oop19_ca2_luke_halpenny;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -12,7 +13,7 @@ import java.util.InputMismatchException;
  * @author Luke Halpenny (D00219060)
  * @version 1.0
  */
-public class Registry {
+public class Registry implements Serializable {
 
     private ArrayList<Owner> owners;
 

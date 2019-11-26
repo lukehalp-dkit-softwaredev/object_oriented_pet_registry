@@ -1,5 +1,6 @@
 package oop19_ca2_luke_halpenny;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ import java.util.regex.Pattern;
  * @author Luke Halpenny (D00219060)
  * @version 1.0
  */
-public class Owner {
+public class Owner implements Serializable {
 
     static long incrementalId = 1;
 
@@ -137,8 +138,8 @@ public class Owner {
     }
 
     public boolean equals(Owner o) {
-        return this.getId() == o.getId() && this.getName() == this.getName() && this.getEmail() == o.getEmail()
-                && this.getTelephone() == o.getTelephone() && this.getAddress() == o.getAddress()
+        return this.getId() == o.getId() && this.getName().equals(o.getName()) && this.getEmail().equals(o.getEmail())
+                && this.getTelephone().equals(o.getTelephone()) && this.getAddress().equals(o.getAddress())
                 && this.getPets().equals(o.getPets());
     }
 

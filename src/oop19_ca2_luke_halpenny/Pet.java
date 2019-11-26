@@ -1,5 +1,6 @@
 package oop19_ca2_luke_halpenny;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ import java.util.Scanner;
  * @author Luke Halpenny (D00219060)
  * @version 1.0
  */
-public class Pet implements Comparable<Pet> {
+public class Pet implements Comparable<Pet>, Serializable {
 
     private static long incrementalId = 1;
 
@@ -174,5 +175,27 @@ public class Pet implements Comparable<Pet> {
         };
     }
 
+    public boolean equals(Pet o) {
+        return this.getId() == o.getId() && this.getName().equals(this.getName()) && this.getType().equals(o.getType())
+                && this.getBreed().equals(o.getBreed()) && this.getAge() == o.getAge()
+                && this.getColour().equals(o.getColour()) && this.getGender().equals(o.getGender())
+                && this.getDateRegistered().equals(o.getDateRegistered());
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (this.getId() * 3 + this.getName().hashCode() * 5 + this.getType().hashCode() * 7
+                + this.getBreed().hashCode() * 11 + this.getAge() * 13
+                + this.getColour().hashCode() * 17 + this.getGender().hashCode() * 19
+                + this.getDateRegistered().hashCode() * 23);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(id=%d,name=%s,type=%s,breed=%s,age=%d,colour=%s,gender=%s,dateRegistered=)",
+                this.getClass().getSimpleName(), this.getId(),
+                this.getName(), this.getType(), this.getBreed(), this.getAge(), this.getColour(),
+                this.getGender().toString(), this.getDateRegistered().toString());
+    }
 
 }

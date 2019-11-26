@@ -52,4 +52,19 @@ public class Fish extends Pet {
     public void setWaterType(WaterType waterType) {
         this.waterType = waterType;
     }
+
+    public boolean equals(Fish o) {
+        return super.equals(o) && this.getWaterType().equals(o.getWaterType());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + 29 * (this.getWaterType().ordinal());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("(waterType=%s)",
+                this.getWaterType());
+    }
 }

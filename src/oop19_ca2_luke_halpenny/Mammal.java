@@ -52,4 +52,19 @@ public class Mammal extends Pet {
     public void setNeutered(boolean neutered) {
         this.neutered = neutered;
     }
+
+    public boolean equals(Mammal o) {
+        return super.equals(o) && this.isNeutered() == o.isNeutered();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + 29 * (this.isNeutered() ? 1 : 0);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("(neutered=%s)",
+                this.isNeutered());
+    }
 }
