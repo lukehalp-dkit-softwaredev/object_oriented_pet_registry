@@ -23,8 +23,9 @@ public class Fish extends Pet {
 
     public static Fish newPet(Owner owner, String name, String type, String breed, int age, String colour,
                              Gender gender, WaterType waterType) {
-        long id = Fish.getIncrementalId();
-        Pet.setIncrementalId(Pet.getIncrementalId() + 1);
+//        long id = Pet.getIncrementalId();
+//        Pet.setIncrementalId(Pet.getIncrementalId() + 1);
+        long id = Util.generateId();
         LocalDateTime dateRegistered = LocalDateTime.now();
         return new Fish(id, name, type, breed, age, colour, gender, owner.getId(), dateRegistered, waterType);
     }

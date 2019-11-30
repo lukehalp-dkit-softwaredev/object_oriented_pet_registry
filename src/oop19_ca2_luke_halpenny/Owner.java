@@ -36,8 +36,9 @@ public class Owner implements Serializable {
     }
 
     public static Owner newOwner(String name, String email, String telephone, String address) {
-        long id = incrementalId;
-        ++incrementalId;
+//        long id = incrementalId;
+//        ++incrementalId;
+        long id = Util.generateId();
         LocalDateTime dateRegistered = LocalDateTime.now();
         return new Owner(id, name, email, telephone, address);
     }

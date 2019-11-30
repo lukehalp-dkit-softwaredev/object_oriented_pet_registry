@@ -50,8 +50,9 @@ public class Pet implements Comparable<Pet>, Serializable {
 
     public static Pet newPet(Owner owner, String name, String type, String breed, int age, String colour,
                              Gender gender) {
-        long id = incrementalId;
-        ++incrementalId;
+//        long id = incrementalId;
+//        ++incrementalId;
+        long id = Util.generateId();
         LocalDateTime dateRegistered = LocalDateTime.now();
         return new Pet(id, name, type, breed, age, colour, gender, owner.getId(), dateRegistered);
     }

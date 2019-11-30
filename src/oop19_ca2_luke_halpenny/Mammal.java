@@ -23,8 +23,9 @@ public class Mammal extends Pet {
 
     public static Mammal newPet(Owner owner, String name, String type, String breed, int age, String colour,
                               Gender gender, boolean isNeutered) {
-        long id = Fish.getIncrementalId();
-        Pet.setIncrementalId(Pet.getIncrementalId() + 1);
+//        long id = Pet.getIncrementalId();
+//        Pet.setIncrementalId(Pet.getIncrementalId() + 1);
+        long id = Util.generateId();
         LocalDateTime dateRegistered = LocalDateTime.now();
         return new Mammal(id, name, type, breed, age, colour, gender, owner.getId(), dateRegistered, isNeutered);
     }

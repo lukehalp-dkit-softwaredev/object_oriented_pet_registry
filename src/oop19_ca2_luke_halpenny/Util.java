@@ -1,12 +1,8 @@
 package oop19_ca2_luke_halpenny;
 
-import sun.java2d.loops.ProcessPath;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -21,7 +17,7 @@ public class Util {
 
     public static final int PROGRAM_ID = 0b10101;
     public static int cumulativeId = 0;
-    public static LocalDateTime startTime = LocalDateTime.of(2019, 1, 1, 0, 0);
+    public static LocalDateTime startTime = LocalDateTime.of(2019, 11, 30, 0, 0);
 
     /**
      * Reads in lines from a file, returning them as a String[] object. Designed for reading text files.

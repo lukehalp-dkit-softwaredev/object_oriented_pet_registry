@@ -25,8 +25,9 @@ public class Bird extends Pet {
 
     public static Bird newPet(Owner owner, String name, String type, String breed, int age, String colour,
                                 Gender gender, double wingspan, boolean canFly) {
-        long id = Fish.getIncrementalId();
-        Pet.setIncrementalId(Pet.getIncrementalId() + 1);
+//        long id = Pet.getIncrementalId();
+//        Pet.setIncrementalId(Pet.getIncrementalId() + 1);
+        long id = Util.generateId();
         LocalDateTime dateRegistered = LocalDateTime.now();
         return new Bird(id, name, type, breed, age, colour, gender, owner.getId(), dateRegistered, wingspan, canFly);
     }
