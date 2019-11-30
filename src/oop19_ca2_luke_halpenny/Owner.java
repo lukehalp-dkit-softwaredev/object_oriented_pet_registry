@@ -128,6 +128,10 @@ public class Owner implements Serializable {
         this.pets.add(pet);
     }
 
+    public void removePet(Pet pet) {
+        this.pets.remove(pet);
+    }
+
     public Pet getPet(long id) {
         for (int i = 0; i < this.pets.size(); i++) {
             if(this.pets.get(i).getId() == id) {

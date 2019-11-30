@@ -151,7 +151,7 @@ public class Pet implements Comparable<Pet>, Serializable {
         return (int) (this.getId() - o.getId());
     }
 
-    public Comparator<Pet> sortByAge() {
+    public static Comparator<Pet> sortByAge() {
         return new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
@@ -160,7 +160,7 @@ public class Pet implements Comparable<Pet>, Serializable {
         };
     }
 
-    public Comparator<Pet> sortByGender() {
+    public static Comparator<Pet> sortByGender() {
         return new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {

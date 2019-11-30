@@ -59,7 +59,7 @@ public class Bird extends Pet {
         this.wingspan = wingspan;
     }
 
-    public boolean isCanFly() {
+    public boolean canFly() {
         return canFly;
     }
 
@@ -68,17 +68,17 @@ public class Bird extends Pet {
     }
 
     public boolean equals(Bird o) {
-        return super.equals(o) && this.getWingspan() == o.getWingspan() && this.isCanFly() == o.isCanFly();
+        return super.equals(o) && this.getWingspan() == o.getWingspan() && this.canFly() == o.canFly();
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + 29 * (int) (this.getWingspan() * 10000) + 31 * (this.isCanFly() ? 1 : 0);
+        return super.hashCode() + 29 * (int) (this.getWingspan() * 10000) + 31 * (this.canFly() ? 1 : 0);
     }
 
     @Override
     public String toString() {
         return super.toString() + String.format("(wingspan=%.2f,canFly=%s)",
-                this.getWingspan(), this.isCanFly());
+                this.getWingspan(), this.canFly());
     }
 }
