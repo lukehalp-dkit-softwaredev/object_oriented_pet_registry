@@ -526,12 +526,24 @@ public class Menu {
             this.registry.loadOwners("owners.txt");
         } catch (FileNotFoundException e) {
             System.err.println("\t[!] Couldn't find owners file!");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.err.printf("\t[!] Invalid data in owners file: %s\n", e.getMessage());
+            return;
         }
         try {
             this.registry.loadPets("pets.txt");
         } catch (FileNotFoundException e) {
             System.err.println("\t[!] Couldn't find pets file!");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.err.printf("\t[!] Invalid data in pets file: %s\n", e.getMessage());
+            return;
+        } catch (InputMismatchException e) {
+            System.err.printf("\t[!] Invalid data in pets file: %s\n", e.getMessage());
+            return;
         }
+        System.out.println("Loaded data!");
     }
 
     public void saveToBin() {
