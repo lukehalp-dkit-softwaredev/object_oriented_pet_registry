@@ -55,7 +55,6 @@ public class Util {
         long processPart = PROGRAM_ID << 17;
         long cumulativeIdPart = (cumulativeId % 0x1FFFF);
         long id = timePart + processPart + cumulativeIdPart;
-        System.out.println(id);
         return id;
     }
 
